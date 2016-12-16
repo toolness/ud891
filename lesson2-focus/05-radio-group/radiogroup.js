@@ -24,6 +24,8 @@
   }
 
   RadioGroup.prototype.handleKeyDown = function(e) {
+    var numButtons = this.buttons.length;
+
     switch(e.keyCode) {
 
       case VK_UP:
@@ -31,7 +33,7 @@
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
+        this.focusedIdx = (numButtons + this.focusedIdx - 1) % numButtons;
 
         break;
 
@@ -42,7 +44,7 @@
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
+        this.focusedIdx = (this.focusedIdx + 1) % numButtons;
 
         break;
       }
