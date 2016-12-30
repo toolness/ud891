@@ -20,8 +20,16 @@
     this.el.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.el.addEventListener('click', this.toggle.bind(this));
 
-    // Any other set-up we want to do here?
+    this.el.setAttribute('role', 'checkbox');
+    this._syncAriaChecked();
   }
+
+  Checkbox.prototype._syncAriaChecked = function() {
+    this.el.setAttribute(
+      'aria-checked',
+      this.el.hasAttribute('checked').toString()
+    );
+  };
 
   Checkbox.prototype.handleKeyDown = function(e) {
     switch(e.keyCode) {
@@ -45,6 +53,7 @@
       // Hmmmmm.
 
     }
+    this._syncAriaChecked();
   };
 
   var checkboxes = slice(document.querySelectorAll('.checkbox'));
