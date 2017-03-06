@@ -8,6 +8,8 @@ var modalOverlay = document.querySelector('.modal-overlay');
 var modalToggle = document.querySelector('.modal-toggle');
 modalToggle.addEventListener('click', openModal);
 
+var nonModalContent = document.querySelector('.wrapper');
+
 function openModal(e) {
   // Save current focus
   focusedElementBeforeModal = e.target;
@@ -63,7 +65,8 @@ function openModal(e) {
     }
   }
 
-  // FIXME: hide non-modal content from screen readers
+  // hide non-modal content from screen readers
+  nonModalContent.setAttribute('aria-hidden', 'true');
 }
 
 function closeModal() {
@@ -74,5 +77,6 @@ function closeModal() {
   // Set focus back to element that had it before the modal was opened
   focusedElementBeforeModal.focus();
 
-  // FIXME: don't forget to make main content screen reader accessible again.
+  // make main content screen reader accessible again.
+  nonModalContent.setAttribute('aria-hidden', 'false');
 }
